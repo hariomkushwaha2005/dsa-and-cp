@@ -19,25 +19,31 @@ inline void fast_io()
 
 void solve()
 {
-    int n;
-    cin >> n;
+    ll n, c, k;
+    cin >> n >> c >> k;
 
-    int maxDish = 0;
-    int winners = 0;
-    for (int i = 0; i < n; ++i)
+    vll monsters(n);
+
+    for (ll &combatPower : monsters)
     {
-        int curDish;
-        cin >> curDish;
-        if (curDish > maxDish)
-        {
-            winners = 1;
-            maxDish = curDish;
-        }
-        else if (maxDish == curDish)
-            winners++;
+        cin >> combatPower;
     }
 
-    cout << winners << endl;
+    sort(all(monsters));
+
+    for (int i = 0; i < n; ++i)
+    {
+        if (monsters[i] > c)
+            break;
+        if (k > 0)
+        {
+            ll inc = min(k, c - monsters[i]);
+            monsters[i] += inc;
+            k -= inc;
+        }
+        c += monsters[i];
+    }
+    cout << c << endl;
 }
 
 int main()
