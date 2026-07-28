@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+    using namespace std;
+ 
+    #define ll long long
+    #define vi vector<int>
+    #define vll vector<ll>
+ 
+    #define endl '\n'
+    #define pb push_back
+    #define yes cout << "YES\n"
+    #define no cout << "NO\n"
+ 
+    #define all(x) (x).begin(), (x).end()
+ 
+    #define loop(i, n) for (ll i = 0; i < (n); i++)
+ 
+    #define in(arr, n) for (ll i = 0; i < (n); i++) cin >> arr[i]
+    #define out(arr) for (ll i = 0; i < (ll)(arr.size()); i++) cout << arr[i] << ' '
+ 
+    ll gcd(ll a, ll b) {
+        while (b != 0) {
+            ll temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+ 
+    ll lcm(ll a, ll b) {
+        return (a / gcd(a, b)) * b;
+    }
+ 
+    void fast() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    }
+    vector<long long> primeFactors(long long n){
+        unordered_set<long long> factors;
+        for (long long i = 2; i * i <= n; i++){
+            while (n % i == 0){
+                factors.insert(i);
+                n /= i;
+            }
+        }
+        if (n > 1) factors.insert(n);
+        vector<long long> v(factors.begin(), factors.end());
+        return v;
+    }
+    void solve(){
+        ll n;
+        cin>>n;
+
+        vector<ll> v= primeFactors(n);
+        ll ans=1;
+        for(auto it : v){
+            ans*=it;
+        }
+        cout<<ans<<endl;
+    }
+    int main(){
+        fast();
+        int t;
+        cin>>t;
+        while(t--){
+            solve();
+        }  
+    }

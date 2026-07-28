@@ -1,0 +1,134 @@
+    #include <iostream> 
+    #include <vector> 
+    #include <string> 
+    #include <queue> 
+    #include <stack>
+    #include <map> 
+    #include <set> 
+    #include <unordered_map> 
+    #include <unordered_set>
+    #include <algorithm> 
+    #include <cmath> 
+    #include <climits>
+    #include <cstring> 
+    #include <iomanip>
+    #include <sstream> 
+    #include <fstream> 
+    #include <numeric> 
+    #include <bitset> 
+    #include <functional>
+    #include <deque> 
+    #include <list> 
+    #include <tuple> 
+    #include <cassert> 
+    #include <ctime>
+    #include <random> 
+    #include <chrono> 
+    #include <iterator> 
+    #include <utility> 
+    #include <type_traits>
+    using namespace std;
+
+    // Type aliases
+    #define ll long long
+    #define vi vector<int>
+    #define vll vector<ll>
+
+    // IO & Logic Shortcuts
+    #define endl '\n'
+    #define pb push_back
+    #define yes cout << "YES\n"
+    #define no cout << "NO\n"
+
+    // Common operations
+    #define all(x) (x).begin(), (x).end()
+
+    // Loops
+    #define loop(i, n) for (ll i = 0; i < (n); i++)
+
+    // Input/Output for arrays or vectors
+    #define in(arr, n) for (ll i = 0; i < (n); i++) cin >> arr[i]
+    #define out(arr) for (ll i = 0; i < (ll)(arr.size()); i++) cout << arr[i] << ' '
+
+    ll gcd(ll a, ll b) {
+        while (b != 0) {
+            ll temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    ll lcm(ll a, ll b) {
+        return (a / gcd(a, b)) * b;  // divide first to prevent overflow
+    }
+
+    // Fast IO
+    void fast() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    }
+    ll max(ll a , ll b){
+        if(b>=a) return b;
+        else return a;
+    }
+    long long nCr(long long cnt, long long k) {
+        ll t=0;
+        while(k<=cnt){
+            t=t+cnt-k+1;
+            k++;
+        }
+        return t;
+    }
+    void solve(){
+        ll n;
+        cin>>n;
+        vector<int>a(n);
+        unordered_map<ll,ll>mpa;
+        unordered_map<ll,ll>mpb;
+        for(int i=0; i<n;i++){
+            cin>>a[i];
+        }
+        vector<int>b(n);
+        for(int i=0; i<n;i++){
+            cin>>b[i];
+        }
+        ll cnta=1;
+        ll cntb=1;
+        mpa[a[0]]=1;
+        mpb[b[0]]=1;
+        for(int i=1; i<n;i++){
+            if(a[i]==a[i-1]){
+                cnta++;
+                mpa[a[i]]=max(cnta,mpa[a[i]]);
+            }
+            else{
+                cnta=1;
+                mpa[a[i]]=max(cnta,mpa[a[i]]);
+            }
+
+            if(b[i]==b[i-1]){
+                cntb++;
+                mpb[b[i]]=max(cntb,mpb[b[i]]);
+            }
+            else{
+                cntb=1;
+                mpb[b[i]]=max(cntb,mpb[b[i]]);
+            }
+        }
+        ll maxx=1;
+        for(int i=0;i<n;i++){
+            maxx=max(maxx,(mpa[a[i]]+mpb[a[i]]));
+            maxx=max(maxx,(mpa[b[i]]+mpb[b[i]]));
+        }
+        cout<<maxx<<endl;
+    }
+    int main(){
+        fast();
+        int t;
+        cin>>t;
+        while(t--){
+            solve();
+        }  
+    }
