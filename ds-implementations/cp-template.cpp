@@ -20,7 +20,6 @@ inline void fast_io()
 void solve()
 {
     
-
 }
 
 int main()
