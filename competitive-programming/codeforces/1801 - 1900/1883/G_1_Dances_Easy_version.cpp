@@ -1,0 +1,62 @@
+#pragma GCC optimize("O3,unroll-loops")
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using vi = vector<int>;
+using vll = vector<ll>;
+
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+
+inline void fast_io()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+}
+
+void solve()
+{
+    ll n, m;
+    cin >> n >> m;
+
+    vll a(n);
+    a[0] = 1;
+
+    for (int i = 1; i < n; ++i)
+        cin >> a[i];
+
+    vll b(n);
+    for (auto &x : b)
+        cin >> x;
+
+    sort(all(a));
+    sort(all(b));
+
+    ll i = 0, j = 0;
+    while (j < n)
+    {
+        while (j < n && a[i] >= b[j])
+            ++j;
+        if (j == n)
+            break;
+        ++i;
+        ++j;
+    }
+    cout << n - i << endl;
+}
+
+int main()
+{
+    fast_io();
+
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
