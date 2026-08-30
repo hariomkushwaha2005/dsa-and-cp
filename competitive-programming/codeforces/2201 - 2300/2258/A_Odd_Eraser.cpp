@@ -12,7 +12,14 @@ inline void fast_io()
 
 void solve()
 {
-    println("Hello World!!");
+    ll n;
+    cin >> n;
+
+    vll v(n);
+    for (auto &x : v)
+        cin >> x;
+
+    cout << gcd(v[0], v[n - 1]) << "\n";
 }
 
 int main()
