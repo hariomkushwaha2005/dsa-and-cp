@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#define endl '\n'
+
 using namespace std;
 using ll = long long;
 using vi = vector<int>;
@@ -12,17 +14,19 @@ inline void fast_io()
 
 void solve()
 {
-    println("Hello World!!");
 }
 
 int main()
 {
     fast_io();
+
     int t = 1;
     cin >> t;
+
     while (t--)
     {
         solve();
     }
+    
     return 0;
 }
